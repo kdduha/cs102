@@ -60,7 +60,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
                 if not new_symbol:
                     new_symbol = ord("z")
                 else:
-                    new_symbol += (ord("z") - ord("a") + 1)
+                    new_symbol += ord("z") - ord("a") + 1
             if symbol.isupper():
                 plaintext += chr(new_symbol).upper()
             else:
