@@ -11,15 +11,17 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ''
     """
     ciphertext = ""
-    up_case = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
-    low_case = [chr(i) for i in range(ord('a'), ord('z') + 1)]
-    for letter in plaintext:
-        if letter.isupper():
-            ciphertext += up_case[(up_case.index(letter) + shift) % 26]
-        elif letter.islower():
-            ciphertext += low_case[(low_case.index(letter) + shift) % 26]
+    for symbol in plaintext:
+        if symbol.isalpha():
+            new_symbol = (ord(symbol.lower()) + shift) % ord('z')
+            if new_symbol < ord('a'):
+                new_symbol += ord('a') - 1
+            if symbol.isupper():
+                ciphertext += chr(new_symbol).upper()
+            else:
+                ciphertext += chr(new_symbol)
         else:
-            ciphertext += letter
+            ciphertext += symbol
     return ciphertext
 
 
@@ -36,13 +38,15 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-    up_case = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
-    low_case = [chr(i) for i in range(ord('a'), ord('z') + 1)]
-    for letter in ciphertext:
-        if letter.isupper():
-            plaintext += up_case[(up_case.index(letter) - shift) % 26]
-        elif letter.islower():
-            plaintext += low_case[(low_case.index(letter) - shift) % 26]
+    for symbol in ciphertext:
+        if symbol.isalpha():
+            new_symbol = ord(symbol.lower()) - shift
+            if new_symbol < ord('a'):
+                new_symbol += (ord('z') - ord('a') + 1)
+            if symbol.isupper():
+                plaintext += chr(new_symbol).upper()
+            else:
+                plaintext += chr(new_symbol)
         else:
-            plaintext += letter
+            plaintext += symbol
     return plaintext
