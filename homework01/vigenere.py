@@ -21,7 +21,10 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
         if symbol.isalpha():
             new_symbol = (ord(symbol.lower()) + digit_key[ind % key_len]) % ord("z")
             if new_symbol < ord("a"):
-                new_symbol += ord("a") - 1
+                if not new_symbol:
+                    new_symbol = ord("z")
+                else:
+                    new_symbol += ord("a") - 1
             if symbol.isupper():
                 ciphertext += chr(new_symbol).upper()
             else:
@@ -54,7 +57,10 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
         if symbol.isalpha():
             new_symbol = ord(symbol.lower()) - digit_key[ind % key_len]
             if new_symbol < ord("a"):
-                new_symbol += ord("z") - ord("a") + 1
+                if not new_symbol:
+                    new_symbol = ord("z")
+                else:
+                    new_symbol += (ord("z") - ord("a") + 1)
             if symbol.isupper():
                 plaintext += chr(new_symbol).upper()
             else:
