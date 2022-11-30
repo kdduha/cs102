@@ -9,12 +9,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     'LXFOPVEFRNHR'
     """
     ciphertext = ""
-    digit_key = []
-    for key in keyword:
-        if key.isupper():
-            digit_key.append(ord(key) % ord("A"))
-        else:
-            digit_key.append(ord(key) % ord("a"))
+    digit_key = [ord(key) % ord("A") if key.isupper() else ord(key) % ord("a") for key in keyword] 
     key_len = len(keyword)
 
     for ind, symbol in enumerate(plaintext):
