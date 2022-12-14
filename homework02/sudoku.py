@@ -142,8 +142,8 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
 def check_solution(solution: tp.List[tp.List[str]]) -> bool:
     """Если решение solution верно, то вернуть True, в противном случае False"""
     all_values_num: set[Any] = set("123456789")
-    for ind_1, raw in enumerate(solution):
-        for ind_2, element in enumerate(solution):
+    for ind_1 in range(len(solution)):
+        for ind_2 in range(len(solution)):
             if (
                 set(get_row(solution, (ind_1, ind_2))) != all_values_num
                 or set(get_col(solution, (ind_1, ind_2))) != all_values_num
@@ -153,7 +153,7 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
     return True
 
 
-def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
+def generate_sudoku(N: int) -> tp.Optional[tp.List[tp.List[str]]]:
     """Генерация судоку заполненного на N элементов
     >>> grid = generate_sudoku(40)
     >>> sum(1 for row in grid for e in row if e == '.')
@@ -177,13 +177,12 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     res = solve([["." for ind_2 in range(9)] for ind_1 in range(9)])
     if N > 81:
         return res
-    else:
-        count = 0
-        while count < 81 - N:
-            row, col = randint(0, 8), randint(0, 8)
-            if res and res[row][col] != ".":
-                res[row][col] = "."
-                count += 1
+    count = 0
+    while count < 81 - N:
+        row, col = randint(0, 8), randint(0, 8)
+        if res and res[row][col] != ".":
+            res[row][col] = "."
+            count += 1
     return res
 
 
