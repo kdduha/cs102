@@ -1,7 +1,7 @@
 import pathlib
 import typing as tp
-from random import randint
-from typing import Any, Set
+from random import shuffle
+from typing import Any, List, Set
 
 T = tp.TypeVar("T")
 
@@ -153,7 +153,7 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
     return True
 
 
-def generate_sudoku(N: int) -> tp.Optional[tp.List[tp.List[str]]]:
+def generate_sudoku(N: int) -> list[str]:
     """Генерация судоку заполненного на N элементов
     >>> grid = generate_sudoku(40)
     >>> sum(1 for row in grid for e in row if e == '.')
@@ -175,15 +175,18 @@ def generate_sudoku(N: int) -> tp.Optional[tp.List[tp.List[str]]]:
     True
     """
     res = solve([["." for ind_2 in range(9)] for ind_1 in range(9)])
-    if N > 81:
-        return res
-    count = 0
-    while count < 81 - N:
-        row, col = randint(0, 8), randint(0, 8)
-        if res and res[row][col] != ".":
-            res[row][col] = "."
-            count += 1
-    return res
+    mask = list((81 - N) * "." + "N" * N)
+    shuffle(mask)
+    """
+    for i in range(9):
+        for j in range(9):
+            if mask[i * 9 + j] == '.':
+                res[i][j] = '.' 
+    """
+    return [
+        [res[ind_row][ind_col] if mask[ind_col + ind_row * 9] != "." else "." for ind_col in range(9)]
+        for ind_row in range(9)
+    ]
 
 
 if __name__ == "__main__":
