@@ -77,8 +77,10 @@ def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[s
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
     first = (pos[0] // 3 * 3, pos[1] // 3 * 3)
-    block = [[grid[ind_1][ind_2] for ind_2 in range(first[1], first[1] + 3)] for ind_1 in range(first[0], first[0] + 3)]
-    return [element for row in block for element in row]
+    first_raw = grid[first[0]][first[1] : first[1] + 3]
+    second_raw = grid[first[0] + 1][first[1] : first[1] + 3]
+    third_raw = grid[first[0] + 2][first[1] : first[1] + 3]
+    return first_raw + second_raw + third_raw
 
 
 def find_empty_positions(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.Tuple[int, int]]:
@@ -130,12 +132,12 @@ def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
     if not empty_pos:
         return grid
     values = find_possible_values(grid, empty_pos)
-    draft = [list(row) for row in grid]
     for element in values:
-        draft[empty_pos[0]][empty_pos[1]] = element
-        res = solve(draft)
+        grid[empty_pos[0]][empty_pos[1]] = element
+        res = solve(grid)
         if res:
             return res
+        grid[empty_pos[0]][empty_pos[1]] = "."
     return None
 
 
