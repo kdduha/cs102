@@ -50,7 +50,7 @@ def bin_tree_maze(rows: int = 15, cols: int = 15, random_exit: bool = True) -> L
                 empty_cells.append((x, y))
 
     for cell in empty_cells:
-        remove_wall(grid, cell)
+        grid = remove_wall(grid, cell)
 
     if random_exit:
         x_in, x_out = randint(0, rows - 1), randint(0, rows - 1)
@@ -106,33 +106,34 @@ def shortest_path(
 ) -> Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]:
     """
 
-    :param grid:
+    :param grid_cp:
     :param exit_coord:
     :return:
     """
+    grid_cp = deepcopy(grid)
     row, col = exit_coord
-    end = grid[row][col]
+    end = grid_cp[row][col]
     k = end
     path = [exit_coord]
 
     while k > 0:
-        if row != 0 and grid[row - 1][col] == k - 1:
+        if row != 0 and grid_cp[row - 1][col] == k - 1:
             row -= 1
             path.append((row, col))
-        elif row != len(grid) - 1 and grid[row + 1][col] == k - 1:
+        elif row != len(grid_cp) - 1 and grid_cp[row + 1][col] == k - 1:
             row += 1
             path.append((row, col))
-        elif col != 0 and grid[row][col - 1] == k - 1:
+        elif col != 0 and grid_cp[row][col - 1] == k - 1:
             col -= 1
             path.append((row, col))
-        elif col != len(grid[0]) - 1 and grid[row][col + 1] == k - 1:
+        elif col != len(grid_cp[0]) - 1 and grid_cp[row][col + 1] == k - 1:
             col += 1
             path.append((row, col))
         k -= 1
 
     if len(path) != end:
         last_row, last_col = path[-1]
-        grid[last_row][last_col] = " "
+        grid_cp[last_row][last_col] = " "
         return shortest_path(grid, exit_coord)
 
     return path
@@ -187,7 +188,7 @@ def solve_maze(
 
     while grid[finish[0]][finish[1]] == 0:
         k += 1
-        make_step(grid, k)
+        grid = make_step(grid, k)
 
     return grid, shortest_path(grid, finish)
 
