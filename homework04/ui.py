@@ -1,5 +1,6 @@
 import abc
 import time
+
 from life import GameOfLife
 
 
