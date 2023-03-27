@@ -1,5 +1,4 @@
 import curses
-
 from life import GameOfLife
 from ui import UI
 
