@@ -146,3 +146,4 @@ class GameOfLife:
                 next_gen[i][j] = 0
 
         return next_gen
+    
