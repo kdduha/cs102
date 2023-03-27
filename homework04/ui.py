@@ -11,4 +11,3 @@ class UI(abc.ABC):
     @abc.abstractmethod
     def run(self) -> None:
         time.sleep(0.2)
-

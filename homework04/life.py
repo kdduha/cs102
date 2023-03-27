@@ -12,10 +12,10 @@ Grid = tp.List[Cells]
 
 class GameOfLife:
     def __init__(
-            self,
-            size: tp.Tuple[int, int],
-            randomize: bool = True,
-            max_generations: tp.Optional[float] = float("inf"),
+        self,
+        size: tp.Tuple[int, int],
+        randomize: bool = True,
+        max_generations: tp.Optional[float] = float("inf"),
     ) -> None:
         # Размер клеточного поля
         self.rows, self.cols = size
@@ -30,8 +30,7 @@ class GameOfLife:
 
     def create_grid(self, randomize: bool = False) -> Grid:
         # Copy from previous assignment
-        grid = [[random.randint(0, int(randomize)) for _ in range(self.cols)]
-                for _ in range(self.rows)]
+        grid = [[random.randint(0, int(randomize)) for _ in range(self.cols)] for _ in range(self.rows)]
         return grid
 
     def get_neighbours(self, cell: Cell) -> Cells:
@@ -42,8 +41,7 @@ class GameOfLife:
 
         for position in neigh_index_shifts:
             new_row, new_col = row + position[0], col + position[1]
-            if new_row < 0 or new_row >= self.rows or \
-                    new_col < 0 or new_col >= self.cols:
+            if new_row < 0 or new_row >= self.rows or new_col < 0 or new_col >= self.cols:
                 continue
             neighbours.append(self.curr_generation[new_row][new_col])
 
@@ -80,7 +78,7 @@ class GameOfLife:
         """
         Не превысило ли текущее число поколений максимально допустимое.
         """
-        return self.generations >= self.max_generations
+        return self.generations >= self.max_generations  # type: ignore
 
     @property
     def is_changing(self) -> bool:
@@ -94,9 +92,8 @@ class GameOfLife:
         """
         Прочитать состояние клеток из указанного файла.
         """
-        with open(filename, 'r') as f:
-            grid = [list(map(int, row.strip('\n').split()))
-                    for row in f.readlines()]
+        with open(filename, "r") as f:
+            grid = [list(map(int, row.strip("\n").split())) for row in f.readlines()]
         game = GameOfLife((len(grid), len(grid[0])))
         game.curr_generation = grid
         return game
@@ -105,7 +102,6 @@ class GameOfLife:
         """
         Сохранить текущее состояние клеток в указанный файл.
         """
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             for row in self.curr_generation:
-                f.write(' '.join(map(str, row)) + '\n')
-
+                f.write(" ".join(map(str, row)) + "\n")

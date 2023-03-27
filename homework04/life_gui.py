@@ -1,8 +1,8 @@
 import pygame
-from life import GameOfLife
 from pygame.locals import *
+
+from life import GameOfLife
 from ui import UI
-from math import trunc
 
 
 class GUI(UI):
@@ -29,7 +29,7 @@ class GUI(UI):
         # Copy from previous assignment
         for i in range(self.life.rows):
             for j in range(self.life.cols):
-                color = 'green' if self.life.curr_generation[i][j] == 1 else 'white'
+                color = "green" if self.life.curr_generation[i][j] == 1 else "white"
                 coords = (j * self.cell_size + 1, i * self.cell_size + 1, self.cell_size - 1, self.cell_size - 1)
                 pygame.draw.rect(self.screen, color, coords)
 
@@ -68,7 +68,6 @@ class GUI(UI):
             pygame.display.flip()
             clock.tick(self.speed)
         pygame.quit()
-
 
 
 life = GameOfLife((24, 80))

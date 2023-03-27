@@ -10,9 +10,7 @@ Grid = tp.List[Cells]
 
 
 class GameOfLife:
-    def __init__(
-            self, width: int = 640, height: int = 480, cell_size: int = 10, speed: int = 10
-    ) -> None:
+    def __init__(self, width: int = 640, height: int = 480, cell_size: int = 10, speed: int = 10) -> None:
         self.width = width
         self.height = height
         self.cell_size = cell_size
@@ -30,14 +28,14 @@ class GameOfLife:
         self.speed = speed
 
     def draw_lines(self) -> None:
-        """ Отрисовать сетку """
+        """Отрисовать сетку"""
         for x in range(0, self.width, self.cell_size):
             pygame.draw.line(self.screen, pygame.Color("black"), (x, 0), (x, self.height))
         for y in range(0, self.height, self.cell_size):
             pygame.draw.line(self.screen, pygame.Color("black"), (0, y), (self.width, y))
 
     def run(self) -> None:
-        """ Запустить игру """
+        """Запустить игру"""
         pygame.init()
         clock = pygame.time.Clock()
         pygame.display.set_caption("Game of Life")
@@ -82,8 +80,7 @@ class GameOfLife:
         out : Grid
             Матрица клеток размером `cell_height` х `cell_width`.
         """
-        cells = [[random.randint(0, int(randomize)) for _ in range(self.cell_width)]
-                 for _ in range(self.cell_height)]
+        cells = [[random.randint(0, int(randomize)) for _ in range(self.cell_width)] for _ in range(self.cell_height)]
         return cells
 
     def draw_grid(self) -> None:
@@ -92,7 +89,7 @@ class GameOfLife:
         """
         for i, row in enumerate(self.grid):
             for j, col in enumerate(row):
-                color = 'green' if self.grid[i][j] == 1 else 'white'
+                color = "green" if self.grid[i][j] == 1 else "white"
                 coords = (j * self.cell_size, i * self.cell_size, self.cell_size - 1, self.cell_size - 1)
                 pygame.draw.rect(self.screen, color, coords)
 
@@ -120,8 +117,7 @@ class GameOfLife:
 
         for position in neigh_index_shifts:
             new_row, new_col = row + position[0], col + position[1]
-            if new_row < 0 or new_row >= self.cell_height or \
-                    new_col < 0 or new_col >= self.cell_width:
+            if new_row < 0 or new_row >= self.cell_height or new_col < 0 or new_col >= self.cell_width:
                 continue
             neighbours.append(self.grid[new_row][new_col])
 

@@ -9,11 +9,11 @@ class Console(UI):
         super().__init__(life)
 
     def draw_borders(self, screen) -> None:
-        """ Отобразить рамку. """
-        screen.subwin(self.life.rows + 2, self.life.cols + 2, 0, 0).box("|", '=')
+        """Отобразить рамку."""
+        screen.subwin(self.life.rows + 2, self.life.cols + 2, 0, 0).box("|", "=")
 
     def draw_grid(self, screen) -> None:
-        """ Отобразить состояние клеток. """
+        """Отобразить состояние клеток."""
         for i in range(self.life.rows):
             for j in range(self.life.cols):
                 if self.life.curr_generation[i][j]:
@@ -36,7 +36,3 @@ class Console(UI):
             UI.run(self)
 
         curses.endwin()
-
-
-
-
