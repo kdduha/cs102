@@ -90,7 +90,7 @@ class GameOfLife:
         for i, row in enumerate(self.grid):
             for j, col in enumerate(row):
                 color = "green" if self.grid[i][j] == 1 else "white"
-                coords = (j * self.cell_size, i * self.cell_size, self.cell_size - 1, self.cell_size - 1)
+                coords = (j * self.cell_size + 1, i * self.cell_size + 1, self.cell_size - 1, self.cell_size - 1)
                 pygame.draw.rect(self.screen, color, coords)
 
     def get_neighbours(self, cell: Cell) -> Cells:

@@ -57,6 +57,7 @@ class GUI(UI):
                     i, j = (button_i - 1) // self.cell_size, (button_j - 1) // self.cell_size
                     self.life.curr_generation = self.life.prev_generation
                     self.life.curr_generation[i][j] = 1 if press_mouse else 0
+                    press_mouse = not press_mouse
                     self.draw_grid()
                     self.life.step()
 
@@ -69,5 +70,5 @@ class GUI(UI):
         pygame.quit()
 
 
-life = GameOfLife((24, 80))
+life = GameOfLife((24, 80), max_generations=50)
 GUI(life).run()
