@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Unit tests / coverage reports
+.coverage
+.cache
+coverage.xml
+
+# Mypy cache
+.mypy_cache/
+
+# octobot.py drafts
+*.json
