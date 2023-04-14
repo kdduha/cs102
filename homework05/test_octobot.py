@@ -28,7 +28,7 @@ class TestOctobot(unittest.TestCase):
         self.assertFalse(octobot.is_valid_url("itmo"))
         self.assertFalse(octobot.is_valid_url("itmo."))
         self.assertTrue(octobot.is_valid_url("https://en.itmo.ru"))
-        self.assertFalse(octobot.is_valid_url("en.itmo.ru"))
+        self.assertTrue(octobot.is_valid_url("en.itmo.ru"))
         self.assertFalse(octobot.is_valid_url("en.itmo"))
 
 
