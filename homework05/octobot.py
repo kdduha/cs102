@@ -111,7 +111,7 @@ def choose_action(message):
         deadline_markup.row("Добавить новый дедлайн")
         deadline_markup.row("Изменить дедлайн")
         deadline_markup.row("Удалить дедлайн")
-        start_markup.row("Главное меню")
+        deadline_markup.row("Главное меню")
         info = bot.send_message(message.chat.id, "Что хотите сделать?", reply_markup=deadline_markup)
         bot.register_next_step_handler(info, choose_deadline_action)
 
