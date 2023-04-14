@@ -2,7 +2,7 @@ import json
 import re
 from datetime import datetime
 
-# некоторые импорты ломаются в mypy, вкратце оф.документация говорит. что лучший вариант - прописать ignore
+# некоторые импорты ломаются в mypy, вкратце документация говорит. что лучший вариант - прописать ignore
 # https://mypy.readthedocs.io/en/stable/running_mypy.html
 import gspread  # type: ignore
 import pandas as pd  # type: ignore
