@@ -139,7 +139,9 @@ def choose_subject_action(message):
             start_markup.row(subject)
         start_markup.row("Главное меню")
 
-        info = bot.send_message(message.chat.id, "Нажмите на название предмета, который хотите изменить.", reply_markup=start_markup)
+        info = bot.send_message(
+            message.chat.id, "Нажмите на название предмета, который хотите изменить.", reply_markup=start_markup
+        )
         bot.register_next_step_handler(info, update_subject)
 
     elif message.text == "Добавить предмет":
