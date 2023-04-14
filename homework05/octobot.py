@@ -131,7 +131,6 @@ def choose_subject_action(message):
         bot.register_next_step_handler(info, delete_subject)
 
     elif message.text == "Изменить название и url предмета":
-
         start_markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         df = access_current_sheet()[2]
 
@@ -196,7 +195,6 @@ def choose_deadline_action(message):
         bot.register_next_step_handler(info, delete_deadline)
 
     elif message.text == "Изменить дедлайн":
-
         start_markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
         df = access_current_sheet()[2]
 
