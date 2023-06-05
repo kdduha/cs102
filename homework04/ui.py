@@ -1,4 +1,5 @@
 import abc
+import time
 
 from life import GameOfLife
 
@@ -9,4 +10,4 @@ class UI(abc.ABC):
 
     @abc.abstractmethod
     def run(self) -> None:
-        pass
+        time.sleep(0.2)
