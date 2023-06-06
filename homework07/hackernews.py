@@ -57,7 +57,7 @@ def classify_news():
     X = [i.title for i in classified]
     Y = [i.label for i in classified]
 
-    # нормализация
+    # нормализация (лемматизация)
     morph = pymorphy2.MorphAnalyzer()
     for i, x in enumerate(X):
         X[i] = re.sub(r'[^А-Яа-я]+', ' ', X[i].lower()).strip(' ')
