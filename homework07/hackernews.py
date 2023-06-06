@@ -1,6 +1,6 @@
 import re
 
-import pymorphy2    # type: ignore
+import pymorphy2  # type: ignore
 from bottle import redirect, request, route, run, template  # type: ignore
 
 from bayes import NaiveBayesClassifier
