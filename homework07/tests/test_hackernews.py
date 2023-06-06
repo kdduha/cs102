@@ -3,6 +3,7 @@ from unittest import mock
 from unittest.mock import call
 
 from boddle import boddle
+
 from db import News
 from hackernews import add_label, classify_news, update_news
 
