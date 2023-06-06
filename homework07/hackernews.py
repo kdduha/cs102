@@ -28,23 +28,19 @@ def add_label():
 @route("/update")
 def update_news():
     s = session()
-    new_news = get_news("https://ews.ycombinator.com")
-    new_PK = [(line["title"], line["author"]) for line in new_news]
-    current_PK = zip(request.query.title, request.query.author)
-
-    for i, PK in enumerate(new_PK):
-        if PK not in current_PK:
-            n = new_news[i]
-            news = News(
-                title=n["title"],
-                author=n["author"],
-                url=n["url"],
-                comments=n["comments"],
-                points=n["points"],
+    table = get_news("https://news.ycombinator.com/newest")
+    for news in table:
+        if len(s.query(News).filter(News.title == news["title"] and News.author == news["author"]).all()) == 0:
+            n = News(
+                title=news["title"],
+                author=news["author"],
+                url=news["url"],
+                comments=news["comments"],
+                points=news["points"],
                 label=None,
             )
-            s.add(news)
-            s.commit()
+            s.add(n)
+        s.commit()
     redirect("/news")
 
 
@@ -74,7 +70,6 @@ def classify_news():
         news[i].label = result[i]
     s.commit()
     classified_new = sorted(news, key=lambda x: x.label)
-    redirect("/recommendations")
     return classified_new
 
 

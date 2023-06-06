@@ -32,7 +32,7 @@
                 <tr>
                     <th colspan="7">
                         <a href="/update" class="ui right floated small primary button">I Wanna more Hacker News!</a>
-                        <a href="/recommendations" class="ui right floated small primary button">Give recommendations!</a>
+                        <a href="/news" class="ui right floated small primary button">Go back to home</a>
                     </th>
                 </tr>
             </tfoot>
