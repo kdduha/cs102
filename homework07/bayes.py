@@ -2,7 +2,6 @@ from math import log
 
 
 class NaiveBayesClassifier:
-
     def __init__(self, alpha=1):
         self.alpha = alpha
         self.class_probs = []
@@ -12,7 +11,7 @@ class NaiveBayesClassifier:
         self.class_word_probs = dict()
 
     def fit(self, X, y):
-        """ Fit Naive Bayes classifier according to X, y. """
+        """Fit Naive Bayes classifier according to X, y."""
         self.classes = sorted(set(y))
         self.class_probs = {w: (y.count(w) / len(y)) for w in self.classes}
         self.classes_count = {c: 0 for c in self.classes}
@@ -30,10 +29,16 @@ class NaiveBayesClassifier:
                 self.classes_count[y[i]] += 1
 
         d = len(uniq)
-        self.class_word_probs = {c: [(self.vocab[token][self.classes.index(c)] + self.alpha) / (self.classes_count[c] + self.alpha*d) for token in self.vocab] for c in self.classes}
+        self.class_word_probs = {
+            c: [
+                (self.vocab[token][self.classes.index(c)] + self.alpha) / (self.classes_count[c] + self.alpha * d)
+                for token in self.vocab
+            ]
+            for c in self.classes
+        }
 
     def predict(self, X):
-        """ Perform classification on an array of test vectors X. """
+        """Perform classification on an array of test vectors X."""
         Y = [None] * len(X)
         for i, x in enumerate(X):
             class_predictions = []
@@ -48,9 +53,8 @@ class NaiveBayesClassifier:
         return Y
 
     def score(self, X_test, y_test):
-        """ Returns the mean accuracy on the given test data and labels. """
+        """Returns the mean accuracy on the given test data and labels."""
         Y_pred = self.predict(X_test)
         correct = sum([1 for i in range(len(y_test)) if Y_pred[i] == y_test[i]])
         total = len(y_test)
         return correct / total
-

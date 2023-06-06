@@ -1,7 +1,7 @@
 import re
 
-import pymorphy2
-from bottle import redirect, request, route, run, template
+import pymorphy2    # type: ignore
+from bottle import redirect, request, route, run, template  # type: ignore
 
 from bayes import NaiveBayesClassifier
 from db import News, session
@@ -13,7 +13,7 @@ from scraputils import get_news
 def news_list():
     s = session()
     rows = s.query(News).filter(News.label == None).all()
-    return template('news_template', rows=rows)
+    return template("news_template", rows=rows)
 
 
 @route("/add_label/")
@@ -29,8 +29,8 @@ def add_label():
 @route("/update")
 def update_news():
     s = session()
-    new_news = get_news('https://ews.ycombinator.com')
-    new_PK = [(line['title'], line['author']) for line in new_news]
+    new_news = get_news("https://ews.ycombinator.com")
+    new_PK = [(line["title"], line["author"]) for line in new_news]
     current_PK = zip(request.query.title, request.query.author)
 
     for i, PK in enumerate(new_PK):
@@ -42,7 +42,7 @@ def update_news():
                 url=n["url"],
                 comments=n["comments"],
                 points=n["points"],
-                label=None
+                label=None,
             )
             s.add(news)
             s.commit()
@@ -60,12 +60,12 @@ def classify_news():
     # нормализация (лемматизация)
     morph = pymorphy2.MorphAnalyzer()
     for i, x in enumerate(X):
-        X[i] = re.sub(r'[^А-Яа-я]+', ' ', X[i].lower()).strip(' ')
+        X[i] = re.sub(r"[^А-Яа-я]+", " ", X[i].lower()).strip(" ")
         normalized = []
-        for word in x.split(' '):
+        for word in x.split(" "):
             normal_word = morph.parse(word)[0].normal_form
             normalized.append(normal_word)
-        X[i] = ' '.join(normalized)
+        X[i] = " ".join(normalized)
 
     bayes.fit(X, Y)
     news = s.query(News).filter(News.label == None).all()[:3]
@@ -75,11 +75,11 @@ def classify_news():
         news[i].label = result[i]
     s.commit()
     classified_new = sorted(news, key=lambda x: x.label)
-    redirect('/recommendations')
+    redirect("/recommendations")
     return classified_new
 
 
-@route('/recommendations')
+@route("/recommendations")
 def recommend():
     classified_news = classify_news()
     return template("news_recommendations", rows=classified_news)
