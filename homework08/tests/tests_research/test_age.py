@@ -2,8 +2,7 @@ import datetime as dt
 import unittest
 
 import responses
-
-from research.age import age_predict
+from cs102.homework08.research.age import age_predict
 
 
 class AgeTestCase(unittest.TestCase):

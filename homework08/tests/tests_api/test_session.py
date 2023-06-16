@@ -3,9 +3,9 @@ import unittest
 
 import httpretty
 import responses
-from requests.exceptions import ConnectionError, HTTPError, ReadTimeout, RetryError
-
-from vkapi.session import Session
+from cs102.homework08.vkapi.session import Session
+from requests.exceptions import (ConnectionError, HTTPError, ReadTimeout,
+                                 RetryError)
 
 
 class TestSession(unittest.TestCase):
