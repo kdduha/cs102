@@ -21,7 +21,6 @@ class Session:
         max_retries: int = 3,
         backoff_factor: float = 0.3,
     ) -> None:
-
         self.base_url = base_url
         self.timeout = timeout
         self.max_retries = max_retries
@@ -39,13 +38,11 @@ class Session:
         self.session.mount("https://", self.adapter)
 
     def get(self, url: str, *args: tp.Any, **kwargs: tp.Any) -> requests.Response:
-
         full_url = self.base_url + url
         response = self.session.get(full_url, timeout=self.timeout, *args, **kwargs)
         return response
 
     def post(self, url: str, *args: tp.Any, **kwargs: tp.Any) -> requests.Response:
-
         full_url = self.base_url + url
         response = self.session.post(full_url, timeout=self.timeout, *args, **kwargs)
         return response

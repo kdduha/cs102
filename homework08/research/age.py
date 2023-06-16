@@ -15,6 +15,7 @@ def age_predict(user_id: int) -> tp.Optional[float]:
     :param user_id: Идентификатор пользователя.
     :return: Медианный возраст пользователя.
     """
+
     def age(day, month, year):
         today = dt.date.today()
         return today.year - year - ((today.month, today.day) < (month, day))
