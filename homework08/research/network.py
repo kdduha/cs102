@@ -1,12 +1,12 @@
 import typing as tp
 from collections import defaultdict
 
-import community as community_louvain
-import matplotlib.pyplot as plt
-import networkx as nx
-import pandas as pd
+import community as community_louvain  # type: ignore
+import matplotlib.pyplot as plt  # type: ignore
+import networkx as nx  # type: ignore
+import pandas as pd  # type: ignore
 
-from ..vkapi.friends import get_friends, get_mutual
+from ..vkapi.friends import get_friends, get_mutual  # type: ignore
 
 
 def ego_network(
@@ -20,7 +20,7 @@ def ego_network(
     """
     if user_id:
         mutual = get_mutual(
-            source_uid=friends[0],
+            source_uid=friends[0],  # type: ignore
             target_uids=friends,
         )
     else:

@@ -1,9 +1,9 @@
 import re
 import unittest
 
-import responses
+import responses  # type: ignore
 
-from cs102.homework08.research.network import ego_network
+from cs102.homework08.research.network import ego_network  # type: ignore
 
 
 class EgoNetworkTestCase(unittest.TestCase):
