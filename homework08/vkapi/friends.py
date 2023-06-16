@@ -75,7 +75,7 @@ def get_mutual(
                 target_uids=target_uids,
                 order=order,
                 count=count,
-                offset=i * 100,
+                offset=i*100,
                 access_token=config.VK_CONFIG["access_token"],
                 v=config.VK_CONFIG["version"],
             )
