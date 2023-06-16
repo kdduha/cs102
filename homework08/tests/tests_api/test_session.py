@@ -1,11 +1,16 @@
 import time
 import unittest
 
-import httpretty
-import responses
+import httpretty  # type: ignore
+import responses  # type: ignore
+from requests.exceptions import (  # type: ignore
+    ConnectionError,
+    HTTPError,
+    ReadTimeout,
+    RetryError,
+)
+
 from cs102.homework08.vkapi.session import Session
-from requests.exceptions import (ConnectionError, HTTPError, ReadTimeout,
-                                 RetryError)
 
 
 class TestSession(unittest.TestCase):
