@@ -3,7 +3,7 @@ import math
 import time
 import typing as tp
 
-from ..vkapi import config, session  # type: ignore
+from homework08.vkapi import config, session  # type: ignore
 
 QueryParams = tp.Optional[tp.Dict[str, tp.Union[str, int]]]
 
