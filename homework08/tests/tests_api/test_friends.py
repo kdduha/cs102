@@ -4,7 +4,7 @@ import unittest
 
 import responses  # type: ignore
 
-from cs102.homework08.vkapi.friends import (  # type: ignore
+from homework08.vkapi.friends import (  # type: ignore
     FriendsResponse,
     get_friends,
     get_mutual,

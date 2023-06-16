@@ -10,7 +10,7 @@ from requests.exceptions import (  # type: ignore
     RetryError,
 )
 
-from cs102.homework08.vkapi.session import Session  # type: ignore
+from homework08.vkapi.session import Session  # type: ignore
 
 
 class TestSession(unittest.TestCase):
