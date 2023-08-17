@@ -1,5 +1,9 @@
 # cs102
-![python](https://img.shields.io/badge/python-6a6a6a?style=flat&logo=python&logoColor=white&link=https%3A%2F%2Fwww.python.org%2F)
+<div id="stack badges">
+    <a href="https://www.python.org">
+        <img src="https://img.shields.io/badge/python-6a6a6a?style=flat&logo=python&logoColor=white" alt="python badge"/>
+    </a>
+</div>
 
 Здесь находятся все лабы за 1-ый и 2-ой семестр предмета **"Программирование"** ОП ИТМО 45.03.04 "Интеллектуальные системы в гуманитарной сфере" 2022/2023. 
 
